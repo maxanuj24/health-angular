@@ -1,0 +1,290 @@
+<div>
+  <br />
+  
+  <!--<form [formGroup]="patientForm">-->
+
+    <div class="form-group">
+    <b><label for="name">First Name</label></b>
+        <b><input type="text" #fnameRef=ngModel minlength="3" maxlength="24" class="form-control" name="fname" [(ngModel)]="firstName" required></b>
+        <div *ngIf="fnameRef.errors && (fnameRef.dirty||fnameRef.touched)" class="alert alert-danger">
+          <div [hidden]="!fnameRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!fnameRef.errors.minlength">
+              Enter atleast 3 characters
+          </div>
+          <div [hidden]="!fnameRef.errors.maxlength">
+              Please do not exceed 24 characters
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+    <b><label for="name">Last Name</label></b>
+        <b><input type="text" #lnameRef=ngModel minlength="3" maxlength="24" class="form-control" name="lname" [(ngModel)]="lastName" required></b>
+        <div *ngIf="lnameRef.errors && (lnameRef.dirty||lnameRef.touched)" class="alert alert-danger">
+          <div [hidden]="!lnameRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!lnameRef.errors.minlength">
+              Enter atleast 3 characters
+          </div>
+          <div [hidden]="!lnameRef.errors.maxlength">
+              Please do not exceed 24 characters
+          </div>
+        </div>
+    </div>
+
+     <div class="form-group">
+        <b><label for="length">Age</label></b>
+    <b><input type="number" #AgeRef class="form-control" pattern="^[1-9][0-9]{5}$" maxlength="100" name="Age" [(ngModel)]="age" id="Age" required></b>
+        <div *ngIf="AgeRef.errors && (AgeRef.dirty||AgeRef.touched)" class="alert alert-danger">
+          <div [hidden]="!AgeRef.errors.required">
+              Please Enter Length
+          </div>
+          <div [hidden]="!AgeRef.errors.pattern">
+              Please Enter number
+          </div>
+        </div>
+    </div>
+
+
+      <div class="form-group">
+       <b> <label for="type">Gender</label></b>
+            <select type="text" class="form-control" name="Gender" [(ngModel)]="gender" id="Gender">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+       </div>
+
+
+    <div class="form-group">
+    <b><label for="name">Address</label></b>
+        <b><input type="text" #AddressRef=ngModel minlength="3" maxlength="1000" class="form-control" name="Address" [(ngModel)]="address" required></b>
+        <div *ngIf="AddressRef.errors && (AddressRef.dirty||AddressRef.touched)" class="alert alert-danger">
+          <div [hidden]="!AddressRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!AddressRef.errors.minlength">
+              Enter atleast 3 characters
+          </div>
+          <div [hidden]="!AddressRef.errors.maxlength">
+              Please do not exceed 1000 characters
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b><label for="length">Phone</label></b>
+    <b><input type="number" #PhoneRef=ngModel class="form-control" pattern="^[1-9][0-9]{5}$" maxlength="10" name="Phone" [(ngModel)]="phone" id="Phone" required></b>
+        <div *ngIf="PhoneRef.errors && (PhoneRef.dirty||PhoneRef.touched)" class="alert alert-danger">
+          <div [hidden]="!PhoneRef.errors.required">
+              Please Enter Length
+          </div>
+          <div [hidden]="!PhoneRef.errors.pattern">
+              Please Enter number
+          </div>
+          <div [hidden]="!PhoneRef.errors.maxlength">
+              Please do not exceed 10 numbers
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+    <b><label for="name">ConsultedBy</label></b>
+        <b><input type="text" #ConsultedbyRef=ngModel minlength="3" maxlength="24" class="form-control" name="Consultedby" [(ngModel)]="consultedby" required></b>
+        <div *ngIf="ConsultedbyRef.errors && (ConsultedbyRef.dirty||ConsultedbyRef.touched)" class="alert alert-danger">
+          <div [hidden]="!ConsultedbyRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!ConsultedbyRef.errors.minlength">
+              Enter atleast 3 characters
+          </div>
+          <div [hidden]="!ConsultedbyRef.errors.maxlength">
+              Please do not exceed 1000 characters
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+    <b><label for="name">Complains</label></b>
+        <b><textarea #ComplainsRef=ngModel  maxlength="1000" class="form-control" name="Complains" [(ngModel)]="complains" required></textarea></b>
+        <div *ngIf="ComplainsRef.errors && (ComplainsRef.dirty||ComplainsRef.touched)" class="alert alert-danger">
+          <div [hidden]="!ComplainsRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!ComplainsRef.errors.maxlength">
+              Please do not exceed 1000 characters
+          </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="openDialog()">Create Patient</button> 
+
+
+
+
+<!--***********************************************************************************************************************************************-->
+<!--Modal Dialog starts here-->
+<!--<form [formGroup]="patientForm" (ngSubmit)="addPatient()">-->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+       <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+          </div>  
+    <div class="modal-body">
+      <!-- TODO: Enter add patient form here -->
+         <div class="form-group">
+       <b><label for="name">Complains</label></b>
+        <b><textarea #complainsRef=ngModel  maxlength="1000" class="form-control" name="complains" [(ngModel)]="complains" value={{Complains}} required></textarea></b>
+        <div *ngIf="complainsRef.errors && (complainsRef.dirty||complainsRef.touched)" class="alert alert-danger">
+          <div [hidden]="!complainsRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!complainsRef.errors.maxlength">
+              Please do not exceed 1000 characters
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+    <b><label for="name">Results</label></b>
+        <b><textarea #resultsRef=ngModel  maxlength="1000" class="form-control" name="results" [(ngModel)]="results" required></textarea></b>
+        <div *ngIf="resultsRef.errors && (resultsRef.dirty||resultsRef.touched)" class="alert alert-danger">
+          <div [hidden]="!resultsRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!resultsRef.errors.maxlength">
+              Please do not exceed 1000 characters
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+    <b><label for="name">Prescription</label></b>
+        <b><textarea #prescriptionRef=ngModel  maxlength="1000" class="form-control" name="prescription" [(ngModel)]="prescription" required></textarea></b>
+        <div *ngIf="prescriptionRef.errors && (prescriptionRef.dirty||prescriptionRef.touched)" class="alert alert-danger">
+          <div [hidden]="!prescriptionRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!prescriptionRef.errors.maxlength">
+              Please do not exceed 1000 characters
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+    <b><label for="name">First Name</label></b>
+        <b><input type="text" #firstnameRef=ngModel minlength="3" maxlength="24" class="form-control" name="firstName" [(ngModel)]="firstName" value={{firstName}} required></b>
+        <div *ngIf="firstnameRef.errors && (firstnameRef.dirty||firstnameRef.touched)" class="alert alert-danger">
+          <div [hidden]="!firstnameRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!firstnameRef.errors.minlength">
+              Enter atleast 3 characters
+          </div>
+          <div [hidden]="!firstnameRef.errors.maxlength">
+              Please do not exceed 24 characters
+          </div>
+        </div>
+    </div>
+
+   
+    <div class="form-group">
+    <b><label for="name">Last Name</label></b>
+        <b><input type="text" #lastnameRef=ngModel minlength="3" maxlength="24" class="form-control" name="lastname" [(ngModel)]="lastName" value={{lastName}} required></b>
+        <div *ngIf="lastnameRef.errors && (lastnameRef.dirty||lastnameRef.touched)" class="alert alert-danger">
+          <div [hidden]="!lastnameRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!lastnameRef.errors.minlength">
+              Enter atleast 3 characters
+          </div>
+          <div [hidden]="!lastnameRef.errors.maxlength">
+              Please do not exceed 24 characters
+          </div>
+        </div>
+    </div>
+
+     <div class="form-group">
+        <b><label for="length">Age</label></b>
+    <b><input type="number" #ageRef class="form-control" pattern="^[1-9][0-9]{5}$" maxlength="100" name="age" [(ngModel)]="age" id="age" value={{age}} required></b>
+        <div *ngIf="ageRef.errors && (ageRef.dirty||ageRef.touched)" class="alert alert-danger">
+          <div [hidden]="!ageRef.errors.required">
+              Please Enter Length
+          </div>
+          <div [hidden]="!ageRef.errors.pattern">
+              Please Enter number
+          </div>
+        </div>
+    </div>
+
+
+      <div class="form-group">
+       <b> <label for="type">Gender</label></b>
+            <select type="text" class="form-control" name="Gender" [(ngModel)]="gender" id="Gender" value={{gender}}>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+       </div>
+
+
+    <div class="form-group">
+    <b><label for="name">Address</label></b>
+        <b><input type="text" #addressRef=ngModel minlength="3" maxlength="1000" class="form-control" name="Address" [(ngModel)]="address" value={{address}} required></b>
+        <div *ngIf="addressRef.errors && (addressRef.dirty||addressRef.touched)" class="alert alert-danger">
+          <div [hidden]="!addressRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!addressRef.errors.minlength">
+              Enter atleast 3 characters
+          </div>
+          <div [hidden]="!addressRef.errors.maxlength">
+              Please do not exceed 1000 characters
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b><label for="length">Phone</label></b>
+    <b><input type="number" #phoneRef=ngModel class="form-control" pattern="^[1-9][0-9]{5}$" maxlength="10" name="Phone" [(ngModel)]="phone" id="Phone" value={{phone}} required></b>
+        <div *ngIf="phoneRef.errors && (phoneRef.dirty||phoneRef.touched)" class="alert alert-danger">
+          <div [hidden]="!phoneRef.errors.required">
+              Please Enter Length
+          </div>
+          <div [hidden]="!phoneRef.errors.pattern">
+              Please Enter number
+          </div>
+           <div [hidden]="!phoneRef.errors.maxlength">
+              Please do not exceed 10 numberss
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+    <b><label for="name">ConsultedBy</label></b>
+        <b><input type="text" #consultedbyRef=ngModel minlength="3" maxlength="24" class="form-control" name="Consultedby" [(ngModel)]="consultedby" value={{consultedby}} required></b>
+        <div *ngIf="consultedbyRef.errors && (consultedbyRef.dirty||consultedbyRef.touched)" class="alert alert-danger">
+          <div [hidden]="!consultedbyRef.errors.required">
+              Please Enter Name
+          </div>
+          <div [hidden]="!consultedbyRef.errors.minlength">
+              Enter atleast 3 characters
+          </div>
+          <div [hidden]="!consultedbyRef.errors.maxlength">
+              Please do not exceed 1000 characters
+          </div>
+        </div>
+    </div>
+
+      <br />
+      <button type="button" class="btn btn-success" (click)="addPatient()" >Update Patient</button>
+            <!--<button type="submit" class="btn btn-success" style="color: #fff;">Save</button>-->
+
+    </div>
+  </div>
+</div>
+</div>
+  <!--</form>-->
+</div>
